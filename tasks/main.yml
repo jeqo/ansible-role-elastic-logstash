@@ -1,0 +1,3 @@
+---
+# tasks file for elastic-logstash
+- include: install-logstash.yml

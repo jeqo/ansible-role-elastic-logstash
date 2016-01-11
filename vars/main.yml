@@ -1,0 +1,3 @@
+---
+# vars file for elastic-logstash
+logstash_home: /opt/logstash

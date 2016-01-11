@@ -1,0 +1,14 @@
+---
+#
+- name: define repo
+  template:
+    src: logstash-yum.repo.j2
+    dest: "/etc/yum.repos.d/logstash-{{ logstash_major }}.repo"
+  become: true
+  become_user: root
+
+- name: import elastic key
+  rpm_key: state=present key=https://packages.elastic.co/GPG-KEY-elasticsearch
+
+- name: install logstash
+  yum: name=logstash state=present
