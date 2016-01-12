@@ -113,4 +113,4 @@ galaxy_info:
   categories:
   - monitoring
 dependencies:
-  - { role: jeqo.java, name: java, java_version: 8, java_update: 66, java_build: b17 }
+  - { role: jeqo.java, name: java, java_version: 8, java_update: 66, java_build: 17 }
