@@ -3,7 +3,11 @@
 - include: install-logstash.yml
   tags:
     - install
+  become: true
+  become_user: root
 
 - include: configure-logstash.yml
   tags:
     - configure
+  become: true
+  become_user: root
