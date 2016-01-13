@@ -6,8 +6,6 @@ Vagrant.configure(2) do |config|
   config.vm.define "test01" do |test01|
     test01.vm.box = "jeqo/centos-7"
 
-    test01.vm.network "forwarded_port", guest: 9200, host: 9200
-
     test01.vm.provider "virtualbox" do |vb|
       vb.cpus = 1
       vb.memory = "512"
