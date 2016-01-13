@@ -3,3 +3,7 @@
 - include: install-logstash.yml
   tags:
     - install
+
+- include: configure-logstash.yml
+  tags:
+    - configure

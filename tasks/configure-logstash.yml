@@ -1,22 +1,7 @@
 ---
 #
+- name: reload systemd
+  command: systemctl daemon-reload
 
-cd /etc/pki/tls
-[ -f certs/logstash-forwarder.crt ] && echo \"Certificate exists\" || sudo openssl req -config /opt/logstash/forwarder/openssl.cnf -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt
-[ -f /opt/logstash/forwarder/logstash-forwarder.crt ] && echo \"Certificate provided\" || sudo cp -rf certs/logstash-forwarder.crt /opt/logstash/forwarder/
-
-cat > /opt/logstash/forwarder/logstash-forwarder.conf <<'EOF'
-{
-  \"network\": {
-    \"servers\": [ \"192.168.56.40:5043\" ],
-
-    \"ssl certificate\": \"logstash-forwarder.crt\",
-    \"ssl ca\": \"logstash-forwarder.crt\",
-
-    \"timeout\": 15
-  }
-}
-EOF
-
-sudo service logstash restart
-sudo chkconfig logstash on
+- name: start and enable logstash service
+  service: name=logstash enabled=yes state=started

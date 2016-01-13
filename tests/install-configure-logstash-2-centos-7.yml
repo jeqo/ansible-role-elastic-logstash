@@ -1,0 +1,8 @@
+---
+#
+- name: test install and configure elasticsearch
+  hosts: 127.0.0.1
+
+  roles:
+    - role: elastic-logstash
+      logstash_major: 2.1
