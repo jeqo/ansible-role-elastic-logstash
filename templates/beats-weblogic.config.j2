@@ -1,0 +1,77 @@
+input {
+   beats {
+     type => beats
+     port => {{ logstash_beats_port }}
+   }
+}
+
+filter {
+  # WebLogic Logs
+  if [type] == "weblogic-server-11g" or [type] == "weblogic-server-12c" {
+    multiline {
+    	pattern => "^####"
+      what => "previous"
+      negate => true
+    }
+    grok {
+      patterns_dir => "{{ logstash_patterns_home }}"
+      match => { "message" => "%{WLS_SERVER_LOG}" }
+    }
+    date {
+      match => ["wls_log_timestamp", "MMM dd, yyyy hh:mm:ss a '
+        patterns_dir => "{{ logstash_timezone }}"'"]
+    }
+  }
+
+  # WebLogic Access
+  if [type] == "weblogic-access-12c" {
+    grok {
+      patterns_dir => "{{ logstash_patterns_home }}"
+      match => { "message" => "%{WLS_ACCESS_LOG}" }
+    }
+    mutate {
+      gsub => [
+        "wls_access_timestamp", "\t", " "
+      ]
+    }
+    date {
+      match => ["wls_access_timestamp", "yyyy-MM-dd HH:mm:ss"]
+      timezone => "+00:00"
+    }
+  }
+
+  if [type] == "weblogic-access-11g" {
+    grok {
+      match => { "message" => "%{COMMONAPACHELOG}" }
+    }
+    date {
+      match => ["HTTPDATE", "dd-MMM-yyyy:HH:mm:ss Z"]
+      timezone => "+00:00"
+    }
+  }
+
+  if [type] == "weblogic-diagnostic-11g" or [type] == "weblogic-diagnostic-12c" {
+    multiline {
+      pattern => "^\["
+      what => "previous"
+      negate => true
+    }
+    grok {
+      patterns_dir => "{{ logstash_patterns_home }}"
+      match => { "message" => "%{WLS_DIAGNOSTIC_MESSAGE}" }
+    }
+    mutate {
+       split => { "wls_additional_field" => "] [" }
+    }
+    date {
+      match => ["wls_diag_timestamp", "yyyy-MM-dd'T'HH:mm:ss.SSSZ"]
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    manage_template => false
+	  hosts => ["{{ logstash_elasticsearch_host }}:{{ logstash_elasticsearch_port }}"]
+  }
+}
