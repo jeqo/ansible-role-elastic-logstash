@@ -1,7 +1,7 @@
 ---
 #
-- name: reload systemd
-  command: systemctl daemon-reload
+# - name: reload systemd
+#   command: systemctl daemon-reload
 
 - name: start and enable logstash service
   service: name=logstash enabled=yes state=started
