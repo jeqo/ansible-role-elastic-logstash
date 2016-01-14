@@ -1,3 +1,5 @@
 ---
 # vars file for elastic-logstash
 logstash_home: /opt/logstash
+logstash_patterns_home: {{ logstash_home }}/patterns
+logstash_config_home: /etc/logstash/conf.d

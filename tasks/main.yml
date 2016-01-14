@@ -11,3 +11,9 @@
     - configure
   become: true
   become_user: root
+
+- include: configure-beats-weblogic-elasticsearch.yml
+  tags:
+    - configure-beats-weblogic-elasticsearch
+  become: true
+  become_user: root

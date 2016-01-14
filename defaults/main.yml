@@ -1,3 +1,7 @@
 ---
 # defaults file for elastic-logstash
 logstash_major: # Supported versiones: 2.1 .
+
+# beats weblogic
+logstash_timezone: #
+logstash_beats_port: 5000 #
