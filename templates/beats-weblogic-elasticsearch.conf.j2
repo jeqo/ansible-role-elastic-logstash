@@ -18,8 +18,7 @@ filter {
       match => { "message" => "%{WLS_SERVER_LOG}" }
     }
     date {
-      match => ["wls_log_timestamp", "MMM dd, yyyy hh:mm:ss a '
-        patterns_dir => "{{ logstash_timezone }}"'"]
+      match => ["wls_log_timestamp", "MMM dd, yyyy hh:mm:ss a '{{ logstash_timezone }}'"]
     }
   }
 
