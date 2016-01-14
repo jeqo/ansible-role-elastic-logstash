@@ -1,8 +1,8 @@
 ---
 #
-- name: define logstash configuration: beats-weblogic-elasticsearch
+- name: define logstash configuration beats-weblogic-elasticsearch
   template:
-    src: beats-weblogic-elasticsearch.conf.j2
+    src: "beats-weblogic-elasticsearch.conf.j2"
     dest: "{{ logstash_config_home }}/beats-weblogic-elasticsearch.conf"
 
 - name: start and enable logstash service
