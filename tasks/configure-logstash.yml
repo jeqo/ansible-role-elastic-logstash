@@ -5,7 +5,7 @@
 
 - name: prepare patterns directory
   file:
-    path: {{ logstash_patterns_home }}
+    path: "{{ logstash_patterns_home }}"
     state: directory
 
 - name: start and enable logstash service
