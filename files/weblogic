@@ -6,8 +6,8 @@ WLS_DIAGNOSTIC_MESSAGE %{WLS_DIAGNOSTIC_MESSAGE_FMT1}|%{WLS_DIAGNOSTIC_MESSAGE_F
 
 ### WebLogic Server/Domain Log
 ### Format: ####<Sept 22, 2004 10:46:51 AM EST> <Notice> <WebLogicServer> <MyComputer> <examplesServer> <main> <<WLS Kernel>> <> <null> <1080575211904> <BEA-000360> <Server started in RUNNING mode>
-WLS_SERVER_LOG_FMT1 ####<%{DATA:wls_log_timestamp}> <%{WORD:wls_log_severity}> <%{DATA:wls_topic}> <%{HOST:wls_hostname}> <(%{DATA:wls_server})?> (<(\[%{DATA:wls_thread_status}\] )?ExecuteThread: '%{INT:wls_thread_number}' for queue: '%{DATA:wls_thread_queue}'>)? <%{DATA:wls_user_id}> <%{DATA:wls_transaction_id}> <%{DATA:wls_diagnostic_context_id}> <%{NUMBER:wls_raw_time_value}> <%{DATA:wls_message_id}> %{GREEDYDATA:wls_message_detail}
-WLS_SERVER_LOG_FMT2 ####<%{DATA:wls_log_timestamp}> <%{WORD:wls_log_severity}> <%{DATA:wls_topic}> <%{HOST:wls_hostname}> <(%{DATA:wls_server})?> <%{DATA:wls_threat_id}> <%{DATA:wls_user_id}> <%{DATA:wls_transaction_id}> <%{DATA:wls_diagnostic_context_id}> <%{NUMBER:wls_raw_time_value}> <%{DATA:wls_message_id}> %{GREEDYDATA:wls_message_detail}
+WLS_SERVER_LOG_FMT1 ####<%{DATA:wls_log_timestamp}> <%{WORD:wls_log_severity}> <%{DATA:wls_topic}> <%{DATA:wls_hostname}> <(%{DATA:wls_server})?> (<(\[%{DATA:wls_thread_status}\] )?ExecuteThread: '%{INT:wls_thread_number}' for queue: '%{DATA:wls_thread_queue}'>)? <%{DATA:wls_user_id}> <%{DATA:wls_transaction_id}> <%{DATA:wls_diagnostic_context_id}> <%{NUMBER:wls_raw_time_value}> <%{DATA:wls_message_id}> %{GREEDYDATA:wls_message_detail}
+WLS_SERVER_LOG_FMT2 ####<%{DATA:wls_log_timestamp}> <%{WORD:wls_log_severity}> <%{DATA:wls_topic}> <%{DATA:wls_hostname}> <(%{DATA:wls_server})?> <%{DATA:wls_threat_id}> <%{DATA:wls_user_id}> <%{DATA:wls_transaction_id}> <%{DATA:wls_diagnostic_context_id}> <%{NUMBER:wls_raw_time_value}> <%{DATA:wls_message_id}> %{GREEDYDATA:wls_message_detail}
 WLS_SERVER_LOG %{WLS_SERVER_LOG_FMT1}|%{WLS_SERVER_LOG_FMT2}
 
 ### WebLogic Access 12c Log

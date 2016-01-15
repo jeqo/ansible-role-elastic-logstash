@@ -3,5 +3,10 @@
 # - name: reload systemd
 #   command: systemctl daemon-reload
 
+- name: prepare patterns directory
+  file:
+    path: {{ logstash_patterns_home }}
+    state: directory
+
 - name: start and enable logstash service
   service: name=logstash enabled=yes state=started
