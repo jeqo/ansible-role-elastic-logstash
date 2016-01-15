@@ -5,5 +5,10 @@
     src: "beats-weblogic-elasticsearch.conf.j2"
     dest: "{{ logstash_config_home }}/beats-weblogic-elasticsearch.conf"
 
+- name: define logstash configuration beats-weblogic-elasticsearch
+  copy:
+    src: "files/weblogic"
+    dest: "{{ logstash_patterns_home }}/weblogic"
+
 - name: start and enable logstash service
   service: name=logstash state=restarted
