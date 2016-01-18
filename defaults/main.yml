@@ -3,7 +3,7 @@
 logstash_major: # Supported versiones: 2.1 .
 
 # beats weblogic
-logstash_timezone: #
+logstash_timezone: UTC #
 logstash_beats_port: 5000 #
 
 logstash_elasticsearch_host: localhost #
